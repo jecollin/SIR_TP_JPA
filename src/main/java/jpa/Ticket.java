@@ -5,6 +5,9 @@ import java.util.List;
 
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Ticket.findByTag", query = "SELECT t FROM Ticket t JOIN t.tags tag WHERE tag = :tag")
+})
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,6 +44,12 @@ public class Ticket {
         this.tags = tags;
         this.owner = owner;
         this.assignedTo = assignedTo;
+    }
+
+    public static List<Ticket> findByTag(String tag) {
+        TypedQuery<Ticket> query = EntityManagerHelper.getEntityManager().createNamedQuery("Ticket.findByTag", Ticket.class);
+        query.setParameter("tag", tag);
+        return query.getResultList();
     }
 
     @ManyToOne
