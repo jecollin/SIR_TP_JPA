@@ -19,6 +19,16 @@ public class TicketComment {
     @ManyToOne
     private User user;
 
+    public TicketComment() {
+    }
+
+    public TicketComment(String text, LocalDateTime timestamp, Ticket ticket, User user) {
+        this.text = text;
+        this.timestamp = timestamp;
+        this.ticket = ticket;
+        this.user = user;
+    }
+
     // getters and setters
 
     public Long getId() {

@@ -1,6 +1,7 @@
 package jpa;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class User {
@@ -16,6 +17,12 @@ public class User {
 
     private String role;
 
+    @OneToMany(mappedBy = "owner")
+    private List<Ticket> ownedTickets;
+
+    @OneToMany(mappedBy = "assignedTo")
+    private List<Ticket> assignedTickets;
+
     public User(){
     }
 
@@ -25,6 +32,18 @@ public class User {
         this.password = password;
         this.role = role;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
+
 
 
     // getters and setters

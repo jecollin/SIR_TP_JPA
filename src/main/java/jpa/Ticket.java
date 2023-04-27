@@ -27,6 +27,57 @@ public class Ticket {
     @ManyToOne
     private User assignedTo;
 
+    @OneToMany(mappedBy = "ticket")
+    private List<TicketComment> comments;
+
+    public Ticket() {
+    }
+
+    public Ticket(String title, String body, String status, String priority, List<String> tags, User owner, User assignedTo) {
+        this.title = title;
+        this.body = body;
+        this.status = status;
+        this.priority = priority;
+        this.tags = tags;
+        this.owner = owner;
+        this.assignedTo = assignedTo;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "assigned_to_id")
+    public User getAssignedTo() {
+        return assignedTo;
+    }
+
+    public void setAssignedTo(User assignedTo) {
+        this.assignedTo = assignedTo;
+    }
+
+
+    public String toString() {
+        return "Ticket{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", body='" + body + '\'' +
+                ", status='" + status + '\'' +
+                ", priority='" + priority + '\'' +
+                ", tags=" + tags +
+                ", owner=" + owner.getName() +
+                ", assignedTo=" + assignedTo.getName() +
+                '}';
+    }
+
+
     // getters and setters
 
     public Long getId() {
@@ -75,21 +126,5 @@ public class Ticket {
 
     public void setTags(List<String> tags) {
         this.tags = tags;
-    }
-
-    public User getOwner() {
-        return owner;
-    }
-
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
-
-    public User getAssignedTo() {
-        return assignedTo;
-    }
-
-    public void setAssignedTo(User assignedTo) {
-        this.assignedTo = assignedTo;
     }
 }
