@@ -1,0 +1,26 @@
+                        +-----------+
+                        |   Ticket  |
+                        +-----------+
+                        |   id      |
+                        |   title   |
+                        |   body    |
+                        |   status  |
+                        |   priority|
+                        |   tags    |
+                        |   owner   |
+                        |assignedTo |
+                        +-----------+
+                              |
+                              |
+                              |
+                 +------------+-------------+
+                 |                          |
+        +-------------+           +------------------+
+        |  User       |           |  TicketComment   |
+        +-------------+           +------------------+
+        |   id        |           |   id             |
+        |   name      |           |   text           |
+        |   email     |           |   timestamp      |
+        |   password  |           |   ticketId       |
+        |   role      |           |   userId         |
+        +-------------+           +------------------+
